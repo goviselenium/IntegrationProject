@@ -1,0 +1,10 @@
+D:\IntegrationProject\AzureDevOps.TestResultPublisher\obj\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.csproj.AssemblyReference.cache
+D:\IntegrationProject\AzureDevOps.TestResultPublisher\obj\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.GeneratedMSBuildEditorConfig.editorconfig
+D:\IntegrationProject\AzureDevOps.TestResultPublisher\obj\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.AssemblyInfoInputs.cache
+D:\IntegrationProject\AzureDevOps.TestResultPublisher\obj\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.AssemblyInfo.cs
+D:\IntegrationProject\AzureDevOps.TestResultPublisher\obj\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.csproj.CoreCompileInputs.cache
+D:\IntegrationProject\AzureDevOps.TestResultPublisher\bin\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.deps.json
+D:\IntegrationProject\AzureDevOps.TestResultPublisher\bin\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.dll
+D:\IntegrationProject\AzureDevOps.TestResultPublisher\bin\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.pdb
+D:\IntegrationProject\AzureDevOps.TestResultPublisher\obj\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.dll
+D:\IntegrationProject\AzureDevOps.TestResultPublisher\obj\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.pdb

@@ -1,0 +1,56 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: windows-latest
+
+variables:
+  buildConfiguration: Release
+  AZDO_PUBLISH_RESULTS: true
+
+steps:
+  - task: UseDotNet@2
+    displayName: Use .NET SDK
+    inputs:
+      packageType: sdk
+      version: 10.0.x
+      includePreviewVersions: true
+
+  - task: DotNetCoreCLI@2
+    displayName: Restore
+    inputs:
+      command: restore
+      projects: AzureDevOpsTestResultIntegration.sln
+
+  - task: DotNetCoreCLI@2
+    displayName: Build
+    inputs:
+      command: build
+      projects: AzureDevOpsTestResultIntegration.sln
+      arguments: --configuration $(buildConfiguration) --no-restore
+
+  - powershell: |
+      pwsh AzureDevOps.TestResultPublisher.Samples/bin/$(buildConfiguration)/net10.0/playwright.ps1 install chromium
+    displayName: Install Playwright browsers
+    continueOnError: true
+
+  - task: DotNetCoreCLI@2
+    displayName: Run NUnit tests and publish to Azure DevOps Test Plans
+    env:
+      AZDO_PAT: $(AZDO_PAT)
+      AZDO_PUBLISH_RESULTS: $(AZDO_PUBLISH_RESULTS)
+      BUILD_BUILDNUMBER: $(Build.BuildNumber)
+    inputs:
+      command: test
+      projects: AzureDevOps.TestResultPublisher.Samples/AzureDevOps.TestResultPublisher.Samples.csproj
+      arguments: --configuration $(buildConfiguration) --no-build --logger trx --results-directory $(Agent.TempDirectory)/TestResults
+
+  - task: PublishTestResults@2
+    displayName: Publish pipeline TRX
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFormat: VSTest
+      testResultsFiles: $(Agent.TempDirectory)/TestResults/*.trx
+      failTaskOnFailedTests: false
