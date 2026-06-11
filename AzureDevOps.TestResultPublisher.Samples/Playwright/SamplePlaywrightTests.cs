@@ -8,7 +8,6 @@ namespace AzureDevOps.TestResultPublisher.Samples.Playwright
     public sealed class SamplePlaywrightTests : PlaywrightNUnitBase
     {
         [Test]
-        [Explicit("Sample only. Remove Explicit when wired to a real application and Azure DevOps test case.")]
         [AzureDevOpsTestCaseId(12346)]
         public async Task HomePageTitle_IsDisplayed()
         {

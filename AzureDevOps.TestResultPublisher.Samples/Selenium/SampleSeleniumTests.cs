@@ -7,7 +7,6 @@ namespace AzureDevOps.TestResultPublisher.Samples.Selenium
     public sealed class SampleSeleniumTests : SeleniumNUnitBase
     {
         [Test]
-        [Explicit("Sample only. Remove Explicit when wired to a real application and Azure DevOps test case.")]
         [AzureDevOpsTestCaseId(12345)]
         public void HomePageTitle_IsDisplayed()
         {

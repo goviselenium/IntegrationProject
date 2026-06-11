@@ -14,7 +14,9 @@ namespace AzureDevOps.TestResultPublisher.Models
     {
         public int Id { get; set; }
         public ShallowReference TestCase { get; set; }
+        public ShallowReference TestCaseReference { get; set; }
         public ShallowReference Suite { get; set; }
+        public ShallowReference TestSuite { get; set; }
         public ShallowReference TestPlan { get; set; }
         public string Outcome { get; set; }
     }
@@ -86,6 +88,11 @@ namespace AzureDevOps.TestResultPublisher.Models
     internal sealed class PointUpdateModel
     {
         public int Id { get; set; }
+        public PointResultsUpdateModel Results { get; set; }
+    }
+
+    internal sealed class PointResultsUpdateModel
+    {
         public string Outcome { get; set; }
     }
 

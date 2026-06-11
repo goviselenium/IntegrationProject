@@ -128,4 +128,4 @@ $env:AZDO_PUBLISH_RESULTS = "true"
 - Retries are applied for 408, 429, and 5xx responses.
 - Missing test point validation is explicit and includes plan, suite, and test case IDs.
 - Failed API responses include status code and response body for faster CI troubleshooting.
-- Sample tests are marked `[Explicit]`; remove that once the IDs and target app are real.
+- Replace the sample test case IDs and target application URL before running against a real Azure DevOps project.

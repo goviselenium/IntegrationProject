@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -87,5 +88,48 @@ namespace AzureDevOps.TestResultPublisher.Configuration
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             WriteIndented = true
         };
+
+        static JsonDefaults()
+        {
+            Options.Converters.Add(new FlexibleStringConverter());
+        }
+    }
+
+    internal sealed class FlexibleStringConverter : JsonConverter<string>
+    {
+        public override string Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            if (reader.TokenType == JsonTokenType.String)
+            {
+                return reader.GetString();
+            }
+
+            if (reader.TokenType == JsonTokenType.Number)
+            {
+                if (reader.TryGetInt64(out var longValue))
+                {
+                    return longValue.ToString(CultureInfo.InvariantCulture);
+                }
+
+                return reader.GetDouble().ToString(CultureInfo.InvariantCulture);
+            }
+
+            if (reader.TokenType == JsonTokenType.True || reader.TokenType == JsonTokenType.False)
+            {
+                return reader.GetBoolean().ToString();
+            }
+
+            if (reader.TokenType == JsonTokenType.Null)
+            {
+                return null;
+            }
+
+            throw new JsonException($"Cannot convert token type {reader.TokenType} to string.");
+        }
+
+        public override void Write(Utf8JsonWriter writer, string value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value);
+        }
     }
 }

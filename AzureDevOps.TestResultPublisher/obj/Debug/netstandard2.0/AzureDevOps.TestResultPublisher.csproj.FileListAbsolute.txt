@@ -8,3 +8,4 @@ D:\IntegrationProject\AzureDevOps.TestResultPublisher\bin\Debug\netstandard2.0\A
 D:\IntegrationProject\AzureDevOps.TestResultPublisher\bin\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.pdb
 D:\IntegrationProject\AzureDevOps.TestResultPublisher\obj\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.dll
 D:\IntegrationProject\AzureDevOps.TestResultPublisher\obj\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.pdb
+D:\IntegrationProject\AzureDevOps.TestResultPublisher\obj\Debug\netstandard2.0\AzureDevOps.TestResultPublisher.sourcelink.json

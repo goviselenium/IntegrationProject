@@ -58,7 +58,8 @@ namespace AzureDevOps.TestResultPublisher.Publishing
 
                 if (_config.UpdateTestPointOutcome)
                 {
-                    await _testPointService.UpdateOutcomeAsync(point.Id, ResultMapper.ToAzureDevOpsOutcome(result.ExecutionStatus), cancellationToken).ConfigureAwait(false);
+                    await _testPointService.UpdateOutcomeAsync(point, ResultMapper.ToAzureDevOpsOutcome(result.ExecutionStatus), cancellationToken).ConfigureAwait(false);
+                    _logger.LogInformation("Updated Azure DevOps test point {PointId} outcome to {Outcome}", point.Id, ResultMapper.ToAzureDevOpsOutcome(result.ExecutionStatus));
                 }
 
                 await _testRunService.CompleteRunAsync(run.Id, $"Completed by automation. Outcome={publishedResult.Outcome}", cancellationToken).ConfigureAwait(false);

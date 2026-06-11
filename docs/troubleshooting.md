@@ -11,9 +11,12 @@ No Azure DevOps test point was found for testCaseId ...
 Check:
 
 - The manual test case is inside the configured Test Suite.
+- If the configured suite is a parent suite, confirm the test case is inside that suite or one of its child suites.
 - `testPlanId` and `testSuiteId` are from the same Azure DevOps project.
 - The automation attribute uses the Test Case work item ID, not the Test Point ID.
 - The test case is not only present in a different configuration or child suite.
+- If the error includes `Discovered points: none`, Azure DevOps returned no matching points for the configured plan, suite, and test case ID.
+- If the error includes discovered point details, compare the logged `testCaseId` values with the `[AzureDevOpsTestCaseId(...)]` value.
 
 ## 401 or 403
 
