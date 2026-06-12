@@ -2,7 +2,7 @@
 
 ## Goal
 
-Publish Selenium or Playwright automation execution results back to existing Azure DevOps manual test cases in a Test Plan and Test Suite.
+Publish Selenium automation execution results back to existing Azure DevOps manual test cases in a Test Plan and Test Suite.
 
 The publisher:
 
@@ -41,9 +41,6 @@ AzureDevOps.TestResultPublisher.Samples/
   Selenium/
     SeleniumNUnitBase.cs
     SampleSeleniumTests.cs
-  Playwright/
-    PlaywrightNUnitBase.cs
-    SamplePlaywrightTests.cs
 azure-pipelines.yml
 docs/
   design.md
@@ -72,7 +69,7 @@ Microsoft Learn references:
 ## Functional Flow
 
 1. Add `[AzureDevOpsTestCaseId(12345)]` to the NUnit test method.
-2. The Selenium or Playwright base fixture records `StartedDate` in `[SetUp]`.
+2. The Selenium base fixture records `StartedDate` in `[SetUp]`.
 3. After the test, `[TearDown]` reads NUnit outcome, error message, stack trace, and duration.
 4. On failed tests, the hook saves a screenshot.
 5. `NUnitResultPublisher` builds an `AutomationTestResult`.
@@ -117,7 +114,7 @@ $env:AZDO_PUBLISH_RESULTS = "true"
 ## Implementation Steps
 
 1. Copy `AzureDevOps.TestResultPublisher` into the existing automation solution.
-2. Reference it from the Selenium or Playwright NUnit project.
+2. Reference it from the Selenium NUnit project.
 3. Copy the sample `NUnitHooks` folder or adapt it to the existing hook/listener layer.
 4. Add `[AzureDevOpsTestCaseId(<manual test case work item id>)]` to each automation test.
 5. Configure `appsettings.json` with organization, project, plan, and suite.

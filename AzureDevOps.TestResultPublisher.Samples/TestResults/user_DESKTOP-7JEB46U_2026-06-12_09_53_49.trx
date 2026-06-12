@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="fa92d700-82ce-4a60-ae31-3b391bbd5db3" name="user@DESKTOP-7JEB46U 2026-06-12 09:53:49" runUser="DESKTOP-7JEB46U\user" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-06-12T09:53:49.0365256+05:30" queuing="2026-06-12T09:53:49.0365259+05:30" start="2026-06-12T09:53:48.8370120+05:30" finish="2026-06-12T09:53:49.0369523+05:30" />
+  <TestSettings name="default" id="4a0a71a2-a943-47c1-9ef6-1e9e56df79f2">
+    <Deployment runDeploymentRoot="user_DESKTOP-7JEB46U_2026-06-12_09_53_49" />
+  </TestSettings>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="0" executed="0" passed="0" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>You must install or update .NET to run this application.&#xD;
+App: D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\bin\Debug\net8.0\testhost.exe&#xD;
+Architecture: x64&#xD;
+Framework: 'Microsoft.NETCore.App', version '8.0.0' (x64)&#xD;
+.NET location: C:\Program Files\dotnet&#xD;
+The following frameworks were found:&#xD;
+  10.0.0-preview.5.25277.114 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]&#xD;
+Learn more:&#xD;
+https://aka.ms/dotnet/app-launch-failed&#xD;
+To install missing framework, download:&#xD;
+https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&amp;framework_version=8.0.0&amp;arch=x64&amp;rid=win-x64&amp;os=win10&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="DESKTOP-7JEB46U" outcome="Error" timestamp="2026-06-12T09:53:48.9928679+05:30">
+        <Text>Testhost process for source(s) 'D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\bin\Debug\net8.0\AzureDevOps.TestResultPublisher.Samples.dll' exited with error: You must install or update .NET to run this application.&#xD;
+App: D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\bin\Debug\net8.0\testhost.exe&#xD;
+Architecture: x64&#xD;
+Framework: 'Microsoft.NETCore.App', version '8.0.0' (x64)&#xD;
+.NET location: C:\Program Files\dotnet&#xD;
+The following frameworks were found:&#xD;
+  10.0.0-preview.5.25277.114 at [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]&#xD;
+Learn more:&#xD;
+https://aka.ms/dotnet/app-launch-failed&#xD;
+To install missing framework, download:&#xD;
+https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&amp;framework_version=8.0.0&amp;arch=x64&amp;rid=win-x64&amp;os=win10&#xD;
+. Please check the diagnostic logs for more information.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

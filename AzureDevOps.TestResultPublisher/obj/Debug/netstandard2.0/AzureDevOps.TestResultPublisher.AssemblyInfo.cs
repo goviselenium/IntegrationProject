@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AzureDevOps.TestResultPublisher")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f60456f1381a0c6751e70afdefa52e1f62d9a48")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d5068c833d31ac3f2e87d7a855a2b1059b64f37")]
 [assembly: System.Reflection.AssemblyProductAttribute("AzureDevOps.TestResultPublisher")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AzureDevOps.TestResultPublisher")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

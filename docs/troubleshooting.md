@@ -44,16 +44,6 @@ This implementation creates one automated run per published test. That is simple
 
 Skipped tests are mapped to Azure DevOps `NotApplicable`. Set `publishSkippedTests` to `false` to avoid publishing skipped tests.
 
-## Playwright Browser Install
-
-If Playwright tests fail before publishing because browsers are missing, run:
-
-```powershell
-pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps
-```
-
-In CI, use the Playwright install step in `azure-pipelines.yml`.
-
 ## Security Best Practices
 
 - Do not commit PATs to `appsettings.json`.

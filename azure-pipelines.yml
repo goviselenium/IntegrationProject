@@ -15,8 +15,7 @@ steps:
     displayName: Use .NET SDK
     inputs:
       packageType: sdk
-      version: 10.0.x
-      includePreviewVersions: true
+      version: 8.0.x
 
   - task: DotNetCoreCLI@2
     displayName: Restore
@@ -30,11 +29,6 @@ steps:
       command: build
       projects: AzureDevOpsTestResultIntegration.sln
       arguments: --configuration $(buildConfiguration) --no-restore
-
-  - powershell: |
-      pwsh AzureDevOps.TestResultPublisher.Samples/bin/$(buildConfiguration)/net10.0/playwright.ps1 install chromium
-    displayName: Install Playwright browsers
-    continueOnError: true
 
   - task: DotNetCoreCLI@2
     displayName: Run NUnit tests and publish to Azure DevOps Test Plans

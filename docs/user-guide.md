@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Azure DevOps Test Result Publisher sends automated Selenium or Playwright NUnit test results to existing manual test cases in Azure DevOps Test Plans.
+The Azure DevOps Test Result Publisher sends automated Selenium NUnit test results to existing manual test cases in Azure DevOps Test Plans.
 
 Use this guide when you want to:
 
@@ -20,7 +20,7 @@ Before using the publisher, make sure you have:
 - The manual Test Case work item IDs.
 - A Personal Access Token with permission to read and update Test Plans and test results.
 - .NET SDK installed.
-- Chrome available for Selenium tests, or Playwright browsers installed for Playwright tests.
+- Chrome available for Selenium tests.
 
 ## Project Layout
 
@@ -33,7 +33,7 @@ AzureDevOps.TestResultPublisher.Samples
 
 `AzureDevOps.TestResultPublisher` contains the reusable publishing logic.
 
-`AzureDevOps.TestResultPublisher.Samples` contains sample NUnit integrations for Selenium and Playwright.
+`AzureDevOps.TestResultPublisher.Samples` contains a sample NUnit integration for Selenium.
 
 ## Configure Azure DevOps
 
@@ -147,20 +147,6 @@ dotnet test AzureDevOps.TestResultPublisher.Samples/AzureDevOps.TestResultPublis
 
 Before running against a real Azure DevOps project, replace the sample test case IDs with real Azure DevOps test case IDs.
 
-## Run Playwright Tests
-
-Install Playwright browsers before running Playwright tests:
-
-```powershell
-pwsh AzureDevOps.TestResultPublisher.Samples/bin/Debug/net10.0/playwright.ps1 install chromium
-```
-
-Then run:
-
-```powershell
-dotnet test AzureDevOps.TestResultPublisher.Samples/AzureDevOps.TestResultPublisher.Samples.csproj --logger trx
-```
-
 ## Run In Azure DevOps Pipeline
 
 Create a secret pipeline variable named:
@@ -173,7 +159,6 @@ The included `azure-pipelines.yml` already:
 
 - Restores the solution.
 - Builds the solution.
-- Installs Playwright Chromium.
 - Runs NUnit tests.
 - Passes `AZDO_PAT`, `AZDO_PUBLISH_RESULTS`, and `BUILD_BUILDNUMBER` to the test process.
 - Publishes the pipeline TRX file.
@@ -214,7 +199,6 @@ Skipped tests are only published when `publishSkippedTests` is `true`.
 For failed tests:
 
 - Selenium captures a PNG screenshot from the active browser.
-- Playwright captures a full-page PNG screenshot.
 - The screenshot is uploaded as an Azure DevOps test result attachment.
 
 Screenshots are stored under the test work directory before upload.
