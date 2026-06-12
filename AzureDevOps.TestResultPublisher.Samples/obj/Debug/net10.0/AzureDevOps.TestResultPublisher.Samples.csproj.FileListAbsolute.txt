@@ -284,10 +284,10 @@ D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\obj\Debug\net10.0\
 D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\obj\Debug\net10.0\AzureDevOps.TestResultPublisher.Samples.AssemblyInfoInputs.cache
 D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\obj\Debug\net10.0\AzureDevOps.TestResultPublisher.Samples.AssemblyInfo.cs
 D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\obj\Debug\net10.0\AzureDevOps.TestResultPublisher.Samples.csproj.CoreCompileInputs.cache
+D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\obj\Debug\net10.0\AzureDevOps.TestResultPublisher.Samples.sourcelink.json
 D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\obj\Debug\net10.0\AzureDev.4F73C1B9.Up2Date
 D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\obj\Debug\net10.0\AzureDevOps.TestResultPublisher.Samples.dll
 D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\obj\Debug\net10.0\refint\AzureDevOps.TestResultPublisher.Samples.dll
 D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\obj\Debug\net10.0\AzureDevOps.TestResultPublisher.Samples.pdb
 D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\obj\Debug\net10.0\AzureDevOps.TestResultPublisher.Samples.genruntimeconfig.cache
 D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\obj\Debug\net10.0\ref\AzureDevOps.TestResultPublisher.Samples.dll
-D:\IntegrationProject\AzureDevOps.TestResultPublisher.Samples\obj\Debug\net10.0\AzureDevOps.TestResultPublisher.Samples.sourcelink.json

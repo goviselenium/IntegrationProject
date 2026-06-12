@@ -27,7 +27,7 @@ namespace AzureDevOps.TestResultPublisher.Publishing
             _client = new AzureDevOpsClient(config, _logger);
             _testPointService = new TestPointService(config, _client, _logger);
             _testRunService = new TestRunService(config, _client);
-            _testResultService = new TestResultService(_client);
+            _testResultService = new TestResultService(config, _client);
             _attachmentService = new AttachmentService(_client, _logger);
         }
 
@@ -49,7 +49,7 @@ namespace AzureDevOps.TestResultPublisher.Publishing
             TestCaseResult publishedResult = null;
             try
             {
-                publishedResult = await _testResultService.AddOrUpdateResultAsync(run.Id, point.Id, result, cancellationToken).ConfigureAwait(false);
+                publishedResult = await _testResultService.AddResultAsync(run.Id, point, result, cancellationToken).ConfigureAwait(false);
 
                 if (result.ExecutionStatus == AutomationExecutionStatus.Failed)
                 {
@@ -62,7 +62,7 @@ namespace AzureDevOps.TestResultPublisher.Publishing
                     _logger.LogInformation("Updated Azure DevOps test point {PointId} outcome to {Outcome}", point.Id, ResultMapper.ToAzureDevOpsOutcome(result.ExecutionStatus));
                 }
 
-                await _testRunService.CompleteRunAsync(run.Id, $"Completed by automation. Outcome={publishedResult.Outcome}", cancellationToken).ConfigureAwait(false);
+                await TryCompleteRunAsync(run.Id, $"Completed by automation. Outcome={publishedResult.Outcome}", cancellationToken).ConfigureAwait(false);
                 _logger.LogInformation("Published {Outcome} result to Azure DevOps run {RunId}, result {ResultId}, point {PointId}", publishedResult.Outcome, run.Id, publishedResult.Id, point.Id);
 
                 return new PublishedTestResult
@@ -73,10 +73,28 @@ namespace AzureDevOps.TestResultPublisher.Publishing
                     Outcome = publishedResult.Outcome
                 };
             }
-            catch
+            catch (Exception ex)
             {
-                await _testRunService.CompleteRunAsync(run.Id, "Automation publishing failed after run creation; inspect agent logs.", cancellationToken).ConfigureAwait(false);
+                _logger.LogError(ex, "Azure DevOps publishing failed for run {RunId}.", run.Id);
                 throw;
+            }
+        }
+
+        private async Task TryCompleteRunAsync(int runId, string comment, CancellationToken cancellationToken)
+        {
+            if (!_config.CompleteTestRun)
+            {
+                _logger.LogInformation("Azure DevOps test run {RunId} was left open because completeTestRun is false.", runId);
+                return;
+            }
+
+            try
+            {
+                await _testRunService.CompleteRunAsync(runId, comment, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Could not complete Azure DevOps test run {RunId}. The published result may still be available on the run.", runId);
             }
         }
 

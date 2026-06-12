@@ -13,12 +13,27 @@ namespace AzureDevOps.TestResultPublisher.Models
     internal sealed class TestPoint
     {
         public int Id { get; set; }
+        public int Revision { get; set; }
         public ShallowReference TestCase { get; set; }
         public ShallowReference TestCaseReference { get; set; }
         public ShallowReference Suite { get; set; }
         public ShallowReference TestSuite { get; set; }
         public ShallowReference TestPlan { get; set; }
+        public List<WorkItemProperty> WorkItemProperties { get; set; } = new List<WorkItemProperty>();
         public string Outcome { get; set; }
+    }
+
+    internal sealed class WorkItemProperty
+    {
+        public string Key { get; set; }
+        public string Value { get; set; }
+        public WorkItemPropertyValue WorkItem { get; set; }
+    }
+
+    internal sealed class WorkItemPropertyValue
+    {
+        public string Key { get; set; }
+        public string Value { get; set; }
     }
 
     internal sealed class ShallowReference
@@ -55,19 +70,43 @@ namespace AzureDevOps.TestResultPublisher.Models
         public string Comment { get; set; }
     }
 
-    internal sealed class TestCaseResultUpdateModel
+    internal sealed class PlannedTestResultModel
     {
-        public int Id { get; set; }
+        [JsonPropertyName("state")]
         public string State { get; set; }
+        [JsonPropertyName("outcome")]
         public string Outcome { get; set; }
+        [JsonPropertyName("errorMessage")]
         public string ErrorMessage { get; set; }
+        [JsonPropertyName("stackTrace")]
         public string StackTrace { get; set; }
+        [JsonPropertyName("startedDate")]
         public DateTimeOffset StartedDate { get; set; }
+        [JsonPropertyName("completedDate")]
         public DateTimeOffset CompletedDate { get; set; }
+        [JsonPropertyName("durationInMs")]
         public long DurationInMs { get; set; }
+        [JsonPropertyName("testPointId")]
+        public int TestPointId { get; set; }
+        [JsonPropertyName("testCaseId")]
+        public int TestCaseId { get; set; }
+        [JsonPropertyName("testCaseReferenceId")]
+        public int TestCaseReferenceId { get; set; }
+        [JsonPropertyName("testCaseRevision")]
+        public int TestCaseRevision { get; set; }
+        [JsonPropertyName("testCaseTitle")]
+        public string TestCaseTitle { get; set; }
+        [JsonPropertyName("testPlanId")]
+        public int TestPlanId { get; set; }
+        [JsonPropertyName("testSuiteId")]
+        public int TestSuiteId { get; set; }
+        [JsonPropertyName("testPoint")]
+        public ShallowReference TestPoint { get; set; }
+        [JsonPropertyName("testCase")]
         public ShallowReference TestCase { get; set; }
-        public int[] PointIds { get; set; }
+        [JsonPropertyName("automatedTestName")]
         public string AutomatedTestName { get; set; }
+        [JsonPropertyName("comment")]
         public string Comment { get; set; }
     }
 

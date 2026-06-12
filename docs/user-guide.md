@@ -59,7 +59,8 @@ Update the `azureDevOps` section:
     "maxRetryAttempts": 3,
     "retryDelayMs": 1000,
     "publishSkippedTests": true,
-    "updateTestPointOutcome": true
+    "updateTestPointOutcome": true,
+    "completeTestRun": false
   }
 }
 ```
@@ -80,6 +81,7 @@ Update the `azureDevOps` section:
 | `retryDelayMs` | Delay between retries in milliseconds. |
 | `publishSkippedTests` | When `true`, skipped NUnit tests are published as `NotApplicable`. |
 | `updateTestPointOutcome` | When `true`, the Azure DevOps Test Point outcome is updated after publishing. |
+| `completeTestRun` | When `true`, the publisher tries to mark the generated Azure DevOps test run as completed. Keep this `false` if Azure DevOps accepts results but rejects run completion. |
 
 ## Store The PAT Securely
 

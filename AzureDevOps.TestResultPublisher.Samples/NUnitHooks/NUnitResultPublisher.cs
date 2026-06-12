@@ -52,6 +52,7 @@ namespace AzureDevOps.TestResultPublisher.Samples.NUnitHooks
             };
 
             var configPath = Path.Combine(TestContext.CurrentContext.WorkDirectory, "appsettings.json");
+            TestContext.Progress.WriteLine($"Loading Azure DevOps config from: {configPath}");
             var config = AzureDevOpsConfig.Load(configPath);
 
             using (var publisher = new AzureDevOpsResultPublisher(config, Logger))

@@ -11,8 +11,8 @@ The publisher:
 3. Creates an automated test run linked to the Test Plan.
 4. Updates the run result as Passed, Failed, or NotApplicable.
 5. Uploads failure screenshots as result attachments.
-6. Completes the test run.
-7. Optionally updates the Test Point outcome.
+6. Optionally updates the Test Point outcome.
+7. Optionally completes the test run when `completeTestRun` is enabled.
 
 ## Folder Structure
 
@@ -64,7 +64,7 @@ Microsoft Learn references:
 
 - Test points list: `GET https://dev.azure.com/{organization}/{project}/_apis/testplan/Plans/{planId}/Suites/{suiteId}/TestPoint?testCaseId={testCaseId}&api-version=7.1`
 - Create test run: `POST https://dev.azure.com/{organization}/{project}/_apis/test/runs?api-version=7.1`
-- Update test results: `PATCH https://dev.azure.com/{organization}/{project}/_apis/test/Runs/{runId}/results?api-version=7.1`
+- Add test results: `POST https://dev.azure.com/{organization}/{project}/_apis/test/Runs/{runId}/results?api-version=7.1`
 - Create result attachment: `POST https://dev.azure.com/{organization}/{project}/_apis/test/Runs/{runId}/Results/{resultId}/attachments?api-version=7.1`
 - Complete test run: `PATCH https://dev.azure.com/{organization}/{project}/_apis/test/runs/{runId}?api-version=7.1`
 - Update test point outcome: `PATCH https://dev.azure.com/{organization}/{project}/_apis/testplan/Plans/{planId}/Suites/{suiteId}/TestPoint?api-version=7.1`
@@ -78,9 +78,10 @@ Microsoft Learn references:
 5. `NUnitResultPublisher` builds an `AutomationTestResult`.
 6. `AzureDevOpsResultPublisher.PublishAsync` fetches the Test Point.
 7. A Test Run is created against the Test Plan.
-8. The result is patched with `pointIds`, `testCase.id`, dates, duration, outcome, and diagnostic fields.
+8. The result is added with planned-run fields: `testPointId`, `testCaseId`, `testCaseReferenceId`, `testCaseRevision`, `testCaseTitle`, `testPlanId`, `testSuiteId`, `testPoint`, `testCase`, dates, duration, outcome, and diagnostic fields.
 9. Failure screenshot is uploaded as a result attachment.
-10. The run is completed and the point outcome is optionally updated.
+10. The point outcome is optionally updated.
+11. The run is completed only when `completeTestRun` is `true`.
 
 ## Configuration
 
@@ -100,7 +101,8 @@ Use `AzureDevOps.TestResultPublisher.Samples/appsettings.json` as the template. 
     "maxRetryAttempts": 3,
     "retryDelayMs": 1000,
     "publishSkippedTests": true,
-    "updateTestPointOutcome": true
+    "updateTestPointOutcome": true,
+    "completeTestRun": false
   }
 }
 ```

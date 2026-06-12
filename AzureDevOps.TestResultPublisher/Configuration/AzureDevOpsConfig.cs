@@ -20,6 +20,7 @@ namespace AzureDevOps.TestResultPublisher.Configuration
         public int RetryDelayMs { get; set; } = 1000;
         public bool PublishSkippedTests { get; set; } = true;
         public bool UpdateTestPointOutcome { get; set; } = true;
+        public bool CompleteTestRun { get; set; } = false;
 
         [JsonIgnore]
         public Uri BaseUri => new Uri($"https://dev.azure.com/{Organization}/{Project}/");
@@ -32,7 +33,16 @@ namespace AzureDevOps.TestResultPublisher.Configuration
             }
 
             var json = File.ReadAllText(path);
-            var root = JsonSerializer.Deserialize<AppSettingsRoot>(json, JsonDefaults.Options);
+            AppSettingsRoot root;
+            try
+            {
+                root = JsonSerializer.Deserialize<AppSettingsRoot>(json, JsonDefaults.Options);
+            }
+            catch (JsonException ex)
+            {
+                throw new InvalidOperationException($"Azure DevOps configuration file is not valid JSON: {path}. {ex.Message}", ex);
+            }
+
             var config = root?.AzureDevOps ?? throw new InvalidOperationException("Missing AzureDevOps section in configuration.");
             config.PersonalAccessToken = ResolvePat(config.PersonalAccessToken);
             config.Validate();
